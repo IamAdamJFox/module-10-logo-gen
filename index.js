@@ -2,11 +2,12 @@
 const {Circle} = require("./lib/shapes");
 //required packages
 const fs = require("fs");
-const inquier = require("inquirer");
+const inquirer = require("inquirer");
 //array questions
 
-
-const questions = [
+function Generate() {
+    inquirer
+    .questions ([
     {
         type: "input",
         name: "text",
@@ -29,17 +30,31 @@ const questions = [
         choices: ["Circle"]
     }
 
-]
+])
+    .then((answers) => {
+        if(answers.text.length > 3) {
+            console.log("Text cannot be longer then 3 characters");
+            questions();
+        } else{
+            console.log(answers)
+        }  
+    }
+    )
+}
+
+console.log(questions)
 
 //function to write file
 
-function writeToFile(fileName, data) {
-    fs.writeFile(fileName, data, function (err) {
-        if (error) {
-            return console.log(err);
-        }
+// function writeToFile(fileName, data) {
+//     fs.writeFile(fileName, data, function (err) {
+//         if (error) {
+//             return console.log(err);
+//         }
         
-        console.log("logo made successfully")
-    });
+//         console.log("logo made successfully")
+//     });
 
-}
+// }
+
+Generate();
