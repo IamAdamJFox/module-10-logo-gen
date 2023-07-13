@@ -1,5 +1,5 @@
 //import
-
+const {Circle} = require("./lib/shapes");
 //required packages
 const fs = require("fs");
 const inquier = require("inquirer");
