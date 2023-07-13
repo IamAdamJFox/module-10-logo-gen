@@ -8,32 +8,23 @@ const questions = [
     {
         type: "input",
         name: "text",
-        message: "",
+        message: "Enter up to 3 characters:",
     },
     {
         type: "input",
-        name: "text",
-        message: "",
+        name: "text-color",
+        message: "Enter a color KEYWORD for the text:",
     },
     {
         type: "input",
-        name: "text",
-        message: "",
+        name: "shape-color",
+        message: "Enter a color KEYWORD for the shape:",
     },
     {
         type: "input",
-        name: "text",
-        message: "",
-    },
-    {
-        type: "input",
-        name: "text",
-        message: "",
-    },
-    {
-        type: "input",
-        name: "text",
-        message: "",
+        name: "shape",
+        message: "What shape would you like for your logo:",
+        choices: ["Circle"]
     }
 
 ]
