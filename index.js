@@ -19,7 +19,7 @@ const questions = [
         type: "input",
         name: "text",
         message: "",
-    }
+    },
     {
         type: "input",
         name: "text",
