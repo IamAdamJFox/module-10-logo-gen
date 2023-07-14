@@ -62,7 +62,7 @@ function Generate() {
 
 function writeToFile(fileName, data) {
     fs.writeFile(fileName, data, function (err) {
-        if (error) {
+        if (err) {
             return console.log(err);
         }
         
