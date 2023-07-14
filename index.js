@@ -23,78 +23,82 @@ class Svg{
 //function to handle questions and pass it on 
 function Generate() {
     inquirer
-    .prompt ([
-    {
-        type: "input",
-        name: "text",
-        message: "Enter up to 3 characters:",
-    },
-    {
-        type: "input",
-        name: "textColor",
-        message: "Enter a color KEYWORD(or a hexadecimal #) for the text:",
-    },
-    {
-        type: "input",
-        name: "shapeColor",
-        message: "Enter a color KEYWORD(or a hexadecimal #) for the shape:",
-    },
-    {
-        type: "input",
-        name: "shape",
-        message: "What shape would you like for your logo:",
-        choices: ["Circle", "Triangle", "Square"]
-    }
-
-])
-    .then((answers) => {
-        if(answers.text.length > 3) {
-            console.log("Text cannot be longer then 3 characters");
-            Generate()
-        } else{
-            console.log(answers)
-        }  
-    }
-    )
-    .init() => {
-    console.log(starting)
-    var svgString = ""
-    var svg_file = "logo.svg"
-
+      .prompt([
+        {
+          type: "input",
+          name: "text",
+          message: "Enter up to 3 characters:",
+        },
+        {
+          type: "input",
+          name: "textColor",
+          message: "Enter a color KEYWORD(or a hexadecimal #) for the text:",
+        },
+        {
+          type: "input",
+          name: "shapeColor",
+          message: "Enter a color KEYWORD(or a hexadecimal #) for the shape:",
+        },
+        {
+          type: "list",
+          name: "shape",
+          message: "What shape would you like for your logo:",
+          choices: ["Circle", "Triangle", "Square"],
+        },
+      ])
+      .then((answers) => {
+        if (answers.text.length > 3) {
+          console.log("Text cannot be longer than 3 characters");
+          Generate();
+        } else {
+          console.log(answers);
+          init(answers);
+        }
+      });
+  }
+  
+  function init(answers) {
+    console.log("Starting initialization...");
+    const svgFile = "logo.svg";
+  
     const { text, textColor, shapeColor, shape } = answers;
-
+  
     let userShape;
-    if (shape === 'Circle') {
+    if (shape === "Circle") {
       userShape = new Circle();
-    } else if (shape === 'Square') {
+    } else if (shape === "Square") {
       userShape = new Square();
-    } else if (shape === 'Triangle') {
+    } else if (shape === "Triangle") {
       userShape = new Triangle();
     } else {
-      console.log('Invalid shape!');
+      console.log("Invalid shape!");
       return;
     }
     userShape.setColor(shapeColor);
-
+  
     const svg = new Svg();
     svg.setTextElement(text, textColor);
     svg.setShapeElement(userShape);
     const svgString = svg.render();
+  
+    console.log("Displaying shape:\n\n" + svgString);
+  
+    console.log("Shape generation complete!");
+    console.log("Writing shape to file...");
+    writeToFile(svgFile, svgString);
   }
-}
-
+  
+  function writeToFile(fileName, data) {
+    fs.writeFile(fileName, data, (err) => {
+      if (err) {
+        console.error(err);
+        return;
+      }
+      console.log("Congratulations! You have generated a logo.svg!");
+    });
+  }
+  
+  Generate();
 
 //function to write file
 
-function writeToFile(fileName, data) {
-    fs.writeFile(fileName, data, function (err) {
-        if (err) {
-            return console.log(err)
-        }
-        
-        console.log("logo made successfully")
-    });
-
-}
-
-Generate();
