@@ -4,19 +4,31 @@ const {Circle} = require("./lib/shapes");
 const fs = require("fs");
 const inquirer = require("inquirer");
 
-class Svg{
-    constructor(){
-        this.logoText = ''
-        this.logoShape = ''
+function createSvg() {
+    let logoText = '';
+    let logoShape = '';
+
+    function render() {
+        return `<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="300" height="200">${logoShape}${logoText}</svg>`;
     }
-    render(){
-        return
+
+    function setLogoText(text, color) {
+        logoText = `<text x="150" y="125" font-size="50" text-anchor="middle" fill="${color}">${text}</text>`;
     }
-    setlogoText(text, color){
-        this.logoText =
+
+    function setLogoShape(shape) {
+        logoShape = shape.render();
     }
-    setlogoShape = shape.render
+
+    return {
+        render,
+        setLogoText,
+        setLogoShape
+    };
 }
+
+const svg = createSvg();
+
 
 //function to handle questions and pass it on 
 function Generate() {
