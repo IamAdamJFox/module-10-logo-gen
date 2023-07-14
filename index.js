@@ -31,12 +31,12 @@ function Generate() {
     },
     {
         type: "input",
-        name: "text-color",
+        name: "textColor",
         message: "Enter a color KEYWORD(or a hexadecimal #) for the text:",
     },
     {
         type: "input",
-        name: "shape-color",
+        name: "shapeColor",
         message: "Enter a color KEYWORD(or a hexadecimal #) for the shape:",
     },
     {
@@ -50,14 +50,38 @@ function Generate() {
     .then((answers) => {
         if(answers.text.length > 3) {
             console.log("Text cannot be longer then 3 characters");
-            Generate();
+            Generate()
         } else{
             console.log(answers)
         }  
     }
     )
-}
+    .init() => {
+    console.log(starting)
+    var svgString = ""
+    var svg_file = "logo.svg"
 
+    const { text, textColor, shapeColor, shape } = answers;
+
+    let userShape;
+    if (shape === 'Circle') {
+      userShape = new Circle();
+    } else if (shape === 'Square') {
+      userShape = new Square();
+    } else if (shape === 'Triangle') {
+      userShape = new Triangle();
+    } else {
+      console.log('Invalid shape!');
+      return;
+    }
+    userShape.setColor(shapeColor);
+
+    const svg = new Svg();
+    svg.setTextElement(text, textColor);
+    svg.setShapeElement(userShape);
+    const svgString = svg.render();
+  }
+}
 
 
 //function to write file
@@ -65,7 +89,7 @@ function Generate() {
 function writeToFile(fileName, data) {
     fs.writeFile(fileName, data, function (err) {
         if (err) {
-            return console.log(err);
+            return console.log(err)
         }
         
         console.log("logo made successfully")
