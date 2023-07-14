@@ -34,7 +34,7 @@ function Generate() {
     .then((answers) => {
         if(answers.text.length > 3) {
             console.log("Text cannot be longer then 3 characters");
-            questions();
+            Generate();
         } else{
             console.log(answers)
         }  
