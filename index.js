@@ -4,31 +4,21 @@ const {Circle} = require("./lib/shapes");
 const fs = require("fs");
 const inquirer = require("inquirer");
 
-function createSvg() {
-    let logoText = '';
-    let logoShape = '';
-
-    function render() {
-        return `<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="300" height="200">${logoShape}${logoText}</svg>`;
+class Svg{
+    constructor(){
+        this.logoText = ''
+        this.logoShape = ''
     }
-
-    function setLogoText(text, color) {
-        logoText = `<text x="150" y="125" font-size="50" text-anchor="middle" fill="${color}">${text}</text>`;
+    render(){
+        return `<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="300" height="200">${this.logoShape}${this.logoText}</svg>`
     }
-
-    function setLogoShape(shape) {
-        logoShape = shape.render();
+    setShapeElement(shape){
+    setlogoShape = shape.render
     }
-
-    return {
-        render,
-        setLogoText,
-        setLogoShape
-    };
+    setlogoText(text, color){
+        this.logoText = `<text x="150" y="125" font-size="50" text-anchor="middle" fill="${color}">${text}</text>`
+    }
 }
-
-const svg = createSvg();
-
 
 //function to handle questions and pass it on 
 function Generate() {
@@ -53,7 +43,7 @@ function Generate() {
         type: "input",
         name: "shape",
         message: "What shape would you like for your logo:",
-        choices: ["Circle"]
+        choices: ["Circle", "Triangle", "Square"]
     }
 
 ])
