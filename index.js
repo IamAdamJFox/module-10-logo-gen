@@ -3,8 +3,22 @@ const {Circle} = require("./lib/shapes");
 //required packages
 const fs = require("fs");
 const inquirer = require("inquirer");
-//array questions
 
+class Svg{
+    constructor(){
+        this.logoText = ''
+        this.logoShape = ''
+    }
+    render(){
+        return
+    }
+    setlogoText(text, color){
+        this.logoText =
+    }
+    setlogoShape = shape.render
+}
+
+//function to handle questions and pass it on 
 function Generate() {
     inquirer
     .prompt ([
@@ -16,12 +30,12 @@ function Generate() {
     {
         type: "input",
         name: "text-color",
-        message: "Enter a color KEYWORD for the text:",
+        message: "Enter a color KEYWORD(or a hexadecimal #) for the text:",
     },
     {
         type: "input",
         name: "shape-color",
-        message: "Enter a color KEYWORD for the shape:",
+        message: "Enter a color KEYWORD(or a hexadecimal #) for the shape:",
     },
     {
         type: "input",
@@ -46,15 +60,15 @@ function Generate() {
 
 //function to write file
 
-// function writeToFile(fileName, data) {
-//     fs.writeFile(fileName, data, function (err) {
-//         if (error) {
-//             return console.log(err);
-//         }
+function writeToFile(fileName, data) {
+    fs.writeFile(fileName, data, function (err) {
+        if (error) {
+            return console.log(err);
+        }
         
-//         console.log("logo made successfully")
-//     });
+        console.log("logo made successfully")
+    });
 
-// }
+}
 
 Generate();
