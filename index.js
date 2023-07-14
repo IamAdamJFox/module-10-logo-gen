@@ -4,24 +4,26 @@ const {Circle} = require("./lib/shapes");
 const fs = require("fs");
 const inquirer = require("inquirer");
 
-class Svg{
-    constructor(){
-        this.logoText = ''
-        this.logoShape = ''
+class Svg {
+    constructor() {
+      this.logoText = '';
+      this.logoShape = '';
     }
-    render(){
-        return `<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="300" height="200">${this.logoShape}${this.logoText}</svg>`
+  
+    render() {
+      return `<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="300" height="200">${this.logoShape}${this.logoText}</svg>`;
     }
-    setShapeElement(shape){
-    setlogoShape = shape.render
+  
+    setShapeElement(shape) {
+      this.logoShape = shape.render();
     }
-    setlogoText(text, color){
-        this.logoText = `<text x="150" y="125" font-size="50" text-anchor="middle" fill="${color}">${text}</text>`
+  
+    setLogoText(text, color) {
+      this.logoText = `<text x="150" y="125" font-size="50" text-anchor="middle" fill="${color}">${text}</text>`;
     }
-}
-
-//function to handle questions and pass it on 
-function Generate() {
+  }
+  
+  function Generate() {
     inquirer
       .prompt([
         {
@@ -77,7 +79,7 @@ function Generate() {
     userShape.setColor(shapeColor);
   
     const svg = new Svg();
-    svg.setTextElement(text, textColor);
+    svg.setLogoText(text, textColor);
     svg.setShapeElement(userShape);
     const svgString = svg.render();
   
