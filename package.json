@@ -1,12 +1,5 @@
 {
-  "name": "svg-logo-maker",
-  "version": "1.0.0",
-  "description": "SVG Logo Maker",
-  "main": "index.js",
-  "directories": {
-    "lib": "lib"
-  },
-  "scripts": {
+   "scripts": {
     "start": "node index.js",
     "test": "jest"
   },
