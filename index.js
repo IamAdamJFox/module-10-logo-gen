@@ -7,7 +7,7 @@ const inquirer = require("inquirer");
 
 function Generate() {
     inquirer
-    .questions ([
+    .prompt ([
     {
         type: "input",
         name: "text",
@@ -42,7 +42,7 @@ function Generate() {
     )
 }
 
-console.log(questions)
+
 
 //function to write file
 
