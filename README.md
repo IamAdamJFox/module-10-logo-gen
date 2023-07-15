@@ -14,6 +14,7 @@ Application allows you to make SVG logos through simple inputs
 - [Contributers](#contributers)
 - [Tests](#tests)
 - [Questions](#questions)
+- [Video](#video)
 
 ## Installation
 
@@ -34,6 +35,10 @@ Adam Fox
 ## Tests
 
 npm test is all that is needed
+
+## Video
+
+https://drive.google.com/file/d/1aR6s7RM-OKlFT-Dy6MrudbS7xNd-yjBU/view
 
 ## Questions
 
