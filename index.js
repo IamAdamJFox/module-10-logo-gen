@@ -3,7 +3,9 @@ const {Circle, Triangle, Square} = require("./lib/shapes");
 //required packages
 const fs = require("fs");
 const inquirer = require("inquirer");
-
+//Makes it so the SVG class has a constructor with 3 methods
+//first method is rendering
+//the sencond and third are for setting text and shape elements in the SVG string
 class Svg {
     constructor() {
       this.logoText = '';
@@ -22,7 +24,7 @@ class Svg {
       this.logoText = `<text x="150" y="125" font-size="50" text-anchor="middle" fill="${color}">${text}</text>`;
     }
   }
-  
+  //the starting function asks questions that will be passed on to generate the SVG logo 
   function Generate() {
     inquirer
       .prompt([
@@ -58,7 +60,7 @@ class Svg {
         }
       });
   }
-  
+  //takes answers sets them in place then checks to see what shape to apply to userShape and then console logs it
   function init(answers) {
     console.log("Starting initialization...");
     const svgFile = "logo.svg";
@@ -77,19 +79,19 @@ class Svg {
       return;
     }
     userShape.setColor(shapeColor);
-  
+    //New Svg instance has text and shape elements added
     const svg = new Svg();
     svg.setLogoText(text, textColor);
     svg.setShapeElement(userShape);
     const svgString = svg.render();
-  
+    //logs the shape
     console.log("Displaying shape:\n\n" + svgString);
   
     console.log("Shape generation complete!");
     console.log("Writing shape to file...");
     writeToFile(svgFile, svgString);
   }
-  
+  //writes to file and console logs a success
   function writeToFile(fileName, data) {
     fs.writeFile(fileName, data, (err) => {
       if (err) {
@@ -102,5 +104,5 @@ class Svg {
   
   Generate();
 
-//function to write file
+
 
